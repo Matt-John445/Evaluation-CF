@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation DIR - Ministère de la Transition écologique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* Header gouvernemental */
+        .gov-header {
+            background: #fff;
+            border-bottom: 3px solid #000091;
+            padding: 12px 0;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .gov-identity {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .gov-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .flag {
+            display: flex;
+            height: 150px;
+        }
+        
+        .gov-text {
+            border-left: 2px solid #ddd;
+            padding-left: 35px;
+        }
+        
+        .gov-text .republic {
+            font-size: 16px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .gov-text .ministry {
+            font-size: 20px;
+            color: #000091;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        
+        /* Navigation secondaire */
+        .nav-secondary {
+            background: #000091;
+            color: white;
+            padding: 15px 0;
+        }
+        
+        .nav-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .nav-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        /* Onglets principaux */
+        .main-tabs {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 20px;
+        }
+        
+        .tabs-nav {
+            display: flex;
+            max-width: 1300px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        
+        .tab-btn:hover {
+            color: #000091;
+            background: #f0f0f0;
+        }
+        
+        .tab-btn.active {
+            color: #000091;
+            border-bottom-color: #000091;
+            background: #f0f0f0;
+        }
+        
+        /* Contenu principal */
+        .main-content {
+            padding: 30px 0;
+        }
+        
+        .tab-content {
+            display: none;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 4px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .content-header {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .content-header h1 {
+            font-size: 28px;
+            color: #1e1e1e;
+            margin-bottom: 8px;
+        }
+        
+        .content-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Formulaires */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e1e1e;
+        }
+        
+        .form-label .required {
+            color: #e1000f;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #000091;
+            box-shadow: 0 0 0 2px rgba(0, 0, 145, 0.1);
+        }
+        
+        /* Grille de formulaire */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-section {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000091;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000091;
+            padding-bottom: 5px;
+        }
+        
+        /* Boutons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            margin: 5px;
+        }
+        
+        .btn-primary {
+            background: #000091;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0000b3;
+        }
+        
+        .btn-secondary {
+            background: #fff;
+            color: #000091;
+            border: 1px solid #000091;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+        
+        .btn-success {
+            background: #00a651;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #008a45;
+        }
+        
+        .btn-danger {
+            background: #dc143c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #b8112d;
+        }
+        
+        /* Score inputs */
+        .score-input {
+            width: 80px;
+            text-align: center;
+        }
+        
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 10000;
+            max-width: 350px;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.error {
+            background: #f44336;
+        }
+        
+        .toast.warning {
+            background: #ff9800;
+        }
+        
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        .toast-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .toast-message {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e1e1e;
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Access control */
+        .access-denied {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        
+        .access-denied h2 {
+            color: #dc143c;
+            margin-bottom: 15px;
+        }
+        
+        /* Section d'évaluation */
+        .evaluation-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .score-label {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .score-max {
+            color: #666;
+            margin: 0 10px;
+        }
+        
+        .total-score {
+            background: #000091;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast pour notifications -->
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toast-title"></div>
+        <div class="toast-message" id="toast-message"></div>
+    </div>
+
+    <!-- Header gouvernemental -->
+    <header class="gov-header">
+        <div class="container">
+            <div class="gov-identity">
+                <div class="gov-logo">
+                    <div class="flag">
+                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/bf/Logo_Minist%C3%A8re_Am%C3%A9nagement_du_territoire_D%C3%A9centralisation_Logement_Transports_Ruralit%C3%A9_Ville.jpg/1200px-Logo_Minist%C3%A8re_Am%C3%A9nagement_du_territoire_D%C3%A9centralisation_Logement_Transports_Ruralit%C3%A9_Ville.jpg" alt="République Française">
+                    </div>
+                    <div class="gov-text">
+                        <div class="republic">République Française</div>
+                        <div class="ministry">Ministère de l'Aménagement du Territoire et de la Décentralisation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation secondaire -->
+    <nav class="nav-secondary">
+        <div class="container">
+            <div class="nav-title">Direction Interdépartementale des Routes</div>
+            <div class="nav-subtitle">Plateforme de gestion des évaluations</div>
+        </div>
+    </nav>
+    
+    <!-- Authentification -->
+    <div id="auth-section" class="main-content">
+        <div class="content-card" style="max-width: 500px; margin: 50px auto;">
+            <div class="content-header">
+                <h1>Identification du candidat</h1>
+                <p>Veuillez renseigner vos informations pour accéder à la formation</p>
+            </div>
+            
+            <form id="auth-form">
+                <div class="form-group">
+                    <label class="form-label">
+                        Nom <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" id="user-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        Prénom <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" id="user-firstname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        Type de formation <span class="required">*</span>
+                    </label>
+                    <select class="form-select" id="user-role" required>
+                        <option value="">Sélectionnez...</option>
+                        <option value="formateur-certifie">Formateur certifié</option>
+                        <option value="formateur-test">Formateur en test</option>
+                        <option value="aide-formateur">Aide-formateur</option>
+                        <option value="candidat">Candidat</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    Continuer
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Onglets principaux -->
+    <div id="main-platform" style="display: none;">
+        <div class="main-tabs">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="showTab('quiz')">Quiz Formateurs</button>
+                <button class="tab-btn" onclick="showTab('evaluation-non-formees')">Évaluation Non Formées</button>
+                <button class="tab-btn" onclick="showTab('resultat-formation')">Résultats Formation</button>
+                <button class="tab-btn" onclick="showTab('evaluation-formateur')" id="tab-eval-formateur" style="display: none;">Évaluation Formateur</button>
+                <button class="tab-btn" onclick="showTab('fiche-presence')">Fiche de Présence</button>
+            </div>
+        </div>
+        
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <!-- Onglet Quiz -->
+            <div class="tab-content active" id="tab-quiz">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h1>Quiz d'évaluation des formateurs</h1>
+                        <p>Évaluation des connaissances pour les formateurs DIR</p>
+                    </div>
+                    <p>Le quiz est en refonte...</p>
+                </div>
+            </div>
+            
+            <!-- Onglet Évaluation Non Formées -->
+            <div class="tab-content" id="tab-evaluation-non-formees">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h1>Évaluation des Non Formées</h1>
+                        <p>Évaluation pratique et théorique des candidats non formés</p>
+                    </div>
+                    
+                    <form id="evaluation-form">
+                        <div class="form-grid">
+                            <div class="form-section">
+                                <div class="section-title">Informations Générales</div>
+                                <div class="form-group">
+                                    <label class="form-label">Date <span class="required">*</span></label>
+                                    <input type="date" class="form-input" id="eval-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Candidat(e) <span class="required">*</span></label>
+                                    <input type="text" class="form-input" id="candidat-name" placeholder="Nom et prénom" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="evaluation-section">
+                            <div class="section-title">Épreuve Pratique - Parcours de conduite</div>
+                            <div class="score-row">
+                                <span class="score-label">Parcours de conduite</span>
+                                <span class="score-max">/ 4</span>
+                                <input type="number" class="form-input score-input" id="conduite" min="0" max="4" step="0.5">
+                            </div>
+                        </div>
+                        
+                        <div class="evaluation-section">
+                            <div class="section-title">Situations de Balisage</div>
+                            <div class="score-row">
+                                <span class="score-label">Situation N°1 - Balisage sur une route en ville</span>
+                                <span class="score-max">/ 5</span>
+                                <input type="number" class="form-input score-input" id="situation1" min="0" max="5" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Situation N°2 - Balisage intérieur ou extérieur rond-point</span>
+                                <span class="score-max">/ 5</span>
+                                <input type="number" class="form-input score-input" id="situation2" min="0" max="5" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Situation N°3 - Balisage sur autoroute</span>
+                                <span class="score-max">/ 5</span>
+                                <input type="number" class="form-input score-input" id="situation3" min="0" max="5" step="0.5">
+                            </div>
+                        </div>
+                        
+                        <div class="evaluation-section">
+                            <div class="section-title">Questions Théoriques</div>
+                            <div class="score-row">
+                                <span class="score-label">La DIR est-elle une société privée ou fait-elle partie du secteur public ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q1" min="0" max="1" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Quel véhicule n'a-t-on pas le droit de conduire en étant A3 (hors spécialité) ?</span>
+                                <span class="score-max">/ 2</span>
+                                <input type="number" class="form-input score-input" id="q2" min="0" max="2" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Comment se rendre sur une intervention ?</span>
+                                <span class="score-max">/ 2</span>
+                                <input type="number" class="form-input score-input" id="q3" min="0" max="2" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Que signifie F.L.U (Flèche Lumineuse d'Urgence) ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q4" min="0" max="1" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">La DIR peut-elle passer au feu rouge lors d'une intervention ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q5" min="0" max="1" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Quels sont les véhicules que l'on peut remorquer avec la dépanneuse ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q6" min="0" max="1" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Que faut-il faire après chaque fin d'intervention ?</span>
+                                <span class="score-max">/ 2</span>
+                                <input type="number" class="form-input score-input" id="q7" min="0" max="2" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Est-il possible de conduire un Renault Trafic en étant A3 ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q8" min="0" max="1" step="0.5">
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">À quoi correspond la tenue orange et la tenue jaune/bleu ?</span>
+                                <span class="score-max">/ 1</span>
+                                <input type="number" class="form-input score-input" id="q9" min="0" max="1" step="0.5">
+                            </div>
+                        </div>
+                        
+                        <div class="total-score">
+                            Résultat Total: <span id="total-score">0</span> / 31 (Minimum 24 sur 31)
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="submitEvaluationNonFormees()">
+                            Envoyer l'évaluation
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Onglet Résultats Formation -->
+            <div class="tab-content" id="tab-resultat-formation">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h1>Résultats de Formation</h1>
+                        <p>Compilation des résultats d'une session de formation</p>
+                    </div>
+                    
+                    <form id="results-form">
+                        <div class="form-group">
+                            <label class="form-label">Date <span class="required">*</span></label>
+                            <input type="date" class="form-input" id="results-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Identités des candidats (un par ligne) <span class="required">*</span></label>
+                            <textarea class="form-textarea" id="all-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Personnes admises en tant que stagiaire (un par ligne)</label>
+                            <textarea class="form-textarea" id="admitted-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Ont passé leur formation mais ont été refusés (un par ligne)</label>
+                            <textarea class="form-textarea" id="refused-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="submitResultsFormation()">
+                            Envoyer les résultats
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Onglet Évaluation Formateur -->
+            <div class="tab-content" id="tab-evaluation-formateur">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h1>Évaluation Aide-formateur / Formateur en test</h1>
+                        <p>Réservé aux formateurs certifiés pour évaluer les aide-formateurs et formateurs en test</p>
+                    </div>
+                    
+                    <div id="formateur-access-denied" class="access-denied" style="display: none;">
+                        <h2>Accès restreint</h2>
+                        <p>Cette section est réservée aux formateurs certifiés uniquement.</p>
+                    </div>
+                    
+                    <form id="formateur-eval-form">
+                        <div class="form-group">
+                            <label class="form-label">Date de la formation <span class="required">*</span></label>
+                            <input type="date" class="form-input" id="formateur-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Identité de la personne évaluée <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="personne-evaluee" placeholder="Nom et prénom" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Identité du formateur <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="formateur-evaluateur" required>
+                        </div>
+                        
+                        <div class="evaluation-section">
+                            <div class="section-title">Critères d'évaluation</div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Clarté des explications <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="clarte-explications" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Capacité d'adaptation et pédagogie <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="adaptation-pedagogie" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Interaction et communication <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="interaction-communication" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Maîtrise des cours <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="maitrise-cours" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Utilisation du support d'évaluation des candidats <span class="required">*</span></label>
+                                <textarea class="form-textarea" id="utilisation-support" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Informations complémentaires</label>
+                                <textarea class="form-textarea" id="infos-complementaires"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="submitFormateurEvaluation()">
+                            Envoyer l'évaluation
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Onglet Fiche de Présence -->
+            <div class="tab-content" id="tab-fiche-presence">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h1>Fiche de Présence Formateurs</h1>
+                        <p>Enregistrement de la présence des formateurs</p>
+                    </div>
+                    
+                    <form id="presence-form">
+                        <div class="form-group">
+                            <label class="form-label">Date de formation <span class="required">*</span></label>
+                            <input type="date" class="form-input" id="presence-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Type de formation <span class="required">*</span></label>
+                            <select class="form-select" id="presence-type" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="Initiale">Formation Initiale</option>
+                                <option value="Continue">Formation Continue</option>
+                                <option value="Recyclage">Recyclage</option>
+                                <option value="Spécialisée">Formation Spécialisée</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Formateurs présents (un par ligne) <span class="required">*</span></label>
+                            <textarea class="form-textarea" id="formateurs-presents" placeholder="Nom Prénom - Statut (Certifié/Test/Aide)&#10;Nom Prénom - Statut&#10;..." style="min-height: 120px;" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Heure de début</label>
+                            <input type="time" class="form-input" id="heure-debut">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Heure de fin</label>
+                            <input type="time" class="form-input" id="heure-fin">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Observations</label>
+                            <textarea class="form-textarea" id="observations-presence" placeholder="Remarques particulières, incidents, etc."></textarea>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="submitFichePresence()">
+                            Envoyer la fiche de présence
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© Galax Rôleplay 2025 - Tous droits réservés. Toute reproduction, distribution ou utilisation non autorisée du contenu est strictement interdite et réglementée.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Configuration des webhooks Discord
+        const WEBHOOKS = {
+            quiz: 'https://discord.com/api/webhooks/1416783632172847114/XKWomZNvwN-9xeFVVLKyL0FEWLAL56LAusrpc1MTcrBbkpTl7N_9ouqLcNTtOFHAAC9O',
+            evaluationNonFormees: 'https://discord.com/api/webhooks/1420488869685624844/0-jiH63lVXOXEVA3JwLPfu4fe9diGVk_qoX-F2clfl-BNQvKdp7gbqdn9RvzrKoMDro6',
+            resultatsFormation: 'https://discord.com/api/webhooks/1420489387015147550/mCOoORv-OOXnrc-LWYeiWH1bI8xGMoSrPREJudNDcsljCBA_jiZbWqOYzyLRHtnj32jZ',
+            evaluationFormateur: 'https://discord.com/api/webhooks/1420489482171453667/BGp0Xw2qFDKKrkV0eu5ebXkLkJdra58tS3jy03oSA4yPkdnhdZ_OrYX21Nn0RmBazpYl',
+            fichePresence: 'https://discord.com/api/webhooks/1420489584848146492/fCwIXkGqbc8oolHupRoNbnnM0jKS6tPjojkoZ0sVEwz0JFU9sOwIJxKkIyODFc-CQCCK'
+        };
+        
+        let currentUser = {
+            name: '',
+            firstname: '',
+            role: ''
+        };
+        
+        // Fonction pour obtenir l'heure française
+        function getFrenchDateTime() {
+            return new Date().toLocaleString('fr-FR', {
+                timeZone: 'Europe/Paris',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        function getFrenchDate() {
+            return new Date().toLocaleDateString('fr-FR', {
+                timeZone: 'Europe/Paris',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).split('/').reverse().join('-');
+        }
+        
+        // Authentification simplifiée
+        document.getElementById('auth-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('user-name').value.trim();
+            const firstname = document.getElementById('user-firstname').value.trim();
+            const role = document.getElementById('user-role').value;
+            
+            if (!name || !firstname || !role) {
+                showToast('Erreur', 'Veuillez remplir tous les champs', 'error');
+                return;
+            }
+            
+            currentUser.name = name;
+            currentUser.firstname = firstname;
+            currentUser.role = role;
+            
+            // Masquer l'auth et afficher la plateforme
+            document.getElementById('auth-section').style.display = 'none';
+            document.getElementById('main-platform').style.display = 'block';
+            
+            // Configurer l'accès selon le rôle
+            setupUserAccess(role);
+            
+            // Pré-remplir les champs avec le nom de l'utilisateur
+            prefillUserFields();
+            
+            showToast('Connexion réussie', `Bienvenue ${firstname} ${name}`, 'success');
+        });
+        
+        function setupUserAccess(role) {
+            const evalFormateurTab = document.getElementById('tab-eval-formateur');
+            const evalFormateurAccess = document.getElementById('formateur-access-denied');
+            const evalFormateurForm = document.getElementById('formateur-eval-form');
+            
+            if (role === 'formateur-certifie') {
+                // Formateur certifié : accès à tout
+                evalFormateurTab.style.display = 'block';
+                evalFormateurAccess.style.display = 'none';
+                evalFormateurForm.style.display = 'block';
+            } else {
+                // Autres rôles : pas d'accès à l'évaluation formateur
+                evalFormateurTab.style.display = 'none';
+            }
+        }
+        
+        function prefillUserFields() {
+            // Pré-remplir les champs avec le nom du formateur
+            const formateurEvaluateur = document.getElementById('formateur-evaluateur');
+            if (formateurEvaluateur) {
+                formateurEvaluateur.value = `${currentUser.firstname} ${currentUser.name}`;
+            }
+        }
+        
+        // Navigation entre onglets
+        function showTab(tabName) {
+            // Masquer tous les onglets
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Désactiver tous les boutons d'onglet
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Afficher l'onglet sélectionné
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+        
+        // Calcul automatique du score total pour l'évaluation non formées
+        function updateTotalScore() {
+            const fields = [
+                'conduite', 'situation1', 'situation2', 'situation3',
+                'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'
+            ];
+            
+            let total = 0;
+            fields.forEach(field => {
+                const value = parseFloat(document.getElementById(field).value) || 0;
+                total += value;
+            });
+            
+            document.getElementById('total-score').textContent = total.toFixed(1);
+            
+            // Changer la couleur selon le résultat
+            const totalScoreElement = document.querySelector('.total-score');
+            if (total >= 24) {
+                totalScoreElement.style.background = '#00a651';
+            } else {
+                totalScoreElement.style.background = '#dc143c';
+            }
+        }
+        
+        // Ajouter des listeners pour le calcul automatique
+        document.addEventListener('DOMContentLoaded', function() {
+            const scoreInputs = document.querySelectorAll('.score-input');
+            scoreInputs.forEach(input => {
+                input.addEventListener('input', updateTotalScore);
+            });
+            
+            // Initialiser les dates à aujourd'hui (heure française)
+            const today = getFrenchDate();
+            const evalDate = document.getElementById('eval-date');
+            const resultsDate = document.getElementById('results-date');
+            const formateurDate = document.getElementById('formateur-date');
+            const presenceDate = document.getElementById('presence-date');
+            
+            if (evalDate) evalDate.value = today;
+            if (resultsDate) resultsDate.value = today;
+            if (formateurDate) formateurDate.value = today;
+            if (presenceDate) presenceDate.value = today;
+        });
+        
+        // Fonctions de soumission des formulaires
+        function submitEvaluationNonFormees() {
+            const form = document.getElementById('evaluation-form');
+            
+            if (!form.checkValidity()) {
+                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            const data = {
+                date: document.getElementById('eval-date').value,
+                candidat: document.getElementById('candidat-name').value,
+                scores: {
+                    conduite: document.getElementById('conduite').value || 0,
+                    situation1: document.getElementById('situation1').value || 0,
+                    situation2: document.getElementById('situation2').value || 0,
+                    situation3: document.getElementById('situation3').value || 0,
+                    q1: document.getElementById('q1').value || 0,
+                    q2: document.getElementById('q2').value || 0,
+                    q3: document.getElementById('q3').value || 0,
+                    q4: document.getElementById('q4').value || 0,
+                    q5: document.getElementById('q5').value || 0,
+                    q6: document.getElementById('q6').value || 0,
+                    q7: document.getElementById('q7').value || 0,
+                    q8: document.getElementById('q8').value || 0,
+                    q9: document.getElementById('q9').value || 0
+                },
+                total: document.getElementById('total-score').textContent
+            };
+            
+            const totalScore = parseFloat(data.total);
+            const passed = totalScore >= 24;
+            
+            const discordMessage = {
+                content: `📋 **ÉVALUATION NON FORMÉES**`,
+                embeds: [{
+                    title: '📊 FORMATION INITIALE - ÉVALUATION',
+                    color: passed ? 0x00a651 : 0xdc143c,
+                    fields: [
+                        { name: '📅 Date', value: data.date, inline: true },
+                        { name: '👤 Candidat(e)', value: data.candidat, inline: true },
+                        { name: '📊 Résultat', value: `**${data.total}/31** ${passed ? '✅ ADMIS' : '❌ ÉCHEC'}`, inline: true },
+                        { name: '🚗 Parcours de conduite', value: `*${data.scores.conduite}/4*`, inline: true },
+                        { name: '🏙️ Situation N°1 (Route ville)', value: `*${data.scores.situation1}/5*`, inline: true },
+                        { name: '🔄 Situation N°2 (Rond-point)', value: `*${data.scores.situation2}/5*`, inline: true },
+                        { name: '🛣️ Situation N°3 (Autoroute)', value: `*${data.scores.situation3}/5*`, inline: true },
+                        { name: '❓ Questions théoriques', value: `**La DIR est-elle une société privée ou fait-elle partie du secteur public ? ${data.scores.q1}/1\nQuel véhicule n'a-t-on pas le droit de conduire en étant A3 (hors spécialité) ? ${data.scores.q2}/2\nComment se rendre sur une intervention ? ${data.scores.q3}/2\nQue signifie F.L.U (Flèche Lumineuse d'Urgence) ? ${data.scores.q4}/1\nLa DIR peut-elle passer au feu rouge lors d'une intervention ? ${data.scores.q5}/1\nQuels sont les véhicules que l'on peut remorquer avec la dépanneuse ? ${data.scores.q6}/1\nQue faut-il faire après chaque fin d'intervention ? ${data.scores.q7}/2\nEst-il possible de conduire un Renault Trafic en étant A3 ? ${data.scores.q8}/1\nÀ quoi correspond la tenue orange et la tenue jaune/bleu ? ${data.scores.q9}/1**`, inline: false }
+                    ],
+                    footer: { text: `Évalué par: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            
+            sendToDiscord(WEBHOOKS.evaluationNonFormees, discordMessage, 'Évaluation envoyée avec succès');
+        }
+        
+        function submitResultsFormation() {
+            const date = document.getElementById('results-date').value;
+            const allCandidates = document.getElementById('all-candidates').value.trim();
+            const admittedCandidates = document.getElementById('admitted-candidates').value.trim();
+            const refusedCandidates = document.getElementById('refused-candidates').value.trim();
+            
+            if (!date || !allCandidates) {
+                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            const discordMessage = {
+                content: `🎯 **RÉSULTATS DE FORMATION**`,
+                embeds: [{
+                    title: '📈 RÉSULTAT FORMATION : Initiale',
+                    color: 0x000091,
+                    description: `**Date :** ${date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Identités des candidats (Nom et prénom) :**\n${allCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n')}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Personnes admises en tant que stagiaire (Nom et prénom) :**\n${admittedCandidates ? admittedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n**Ont passé leur formation mais ont été refusés (Nom et prénom) :**\n${refusedCandidates ? refusedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n▬▬▬▬▬▬▬▬▬▬▬\n**Cordialement,**`,
+                    footer: { text: `Rapporteur: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            
+            sendToDiscord(WEBHOOKS.resultatsFormation, discordMessage, 'Résultats de formation envoyés avec succès');
+        }
+        
+        function submitFormateurEvaluation() {
+            if (currentUser.role !== 'formateur-certifie') {
+                showToast('Accès refusé', 'Vous n\'avez pas les permissions nécessaires', 'error');
+                return;
+            }
+            
+            const form = document.getElementById('formateur-eval-form');
+            if (!form.checkValidity()) {
+                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            const data = {
+                date: document.getElementById('formateur-date').value,
+                personneEvaluee: document.getElementById('personne-evaluee').value,
+                formateurEvaluateur: document.getElementById('formateur-evaluateur').value,
+                clarteExplications: document.getElementById('clarte-explications').value,
+                adaptationPedagogie: document.getElementById('adaptation-pedagogie').value,
+                interactionCommunication: document.getElementById('interaction-communication').value,
+                maitriseCours: document.getElementById('maitrise-cours').value,
+                utilisationSupport: document.getElementById('utilisation-support').value,
+                infosComplementaires: document.getElementById('infos-complementaires').value
+            };
+            
+            const discordMessage = {
+                content: `👨‍🏫 **ÉVALUATION FORMATEUR**`,
+                embeds: [{
+                    title: '📝 Évaluation Aide-formateur/Formateur en test',
+                    color: 0xff6600,
+                    description: `**Date de la formation :** ${data.date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Identité de la personne évaluée :** ${data.personneEvaluee}\n**Identité du formateur :** ${data.formateurEvaluateur}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Clarté des explications :** ${data.clarteExplications}\n\n**Capacité d'adaptation et pédagogie :** ${data.adaptationPedagogie}\n\n**Interaction et communication :** ${data.interactionCommunication}\n\n**Maîtrise des cours :** ${data.maitriseCours}\n\n**Utilisation du support d'évaluation des candidats :** ${data.utilisationSupport}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Informations complémentaires :**\n${data.infosComplementaires || 'Aucune'}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Cordialement,**`,
+                    footer: { text: `Évalué par: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            
+            sendToDiscord(WEBHOOKS.evaluationFormateur, discordMessage, 'Évaluation formateur envoyée avec succès');
+        }
+        
+        function submitFichePresence() {
+            const data = {
+                date: document.getElementById('presence-date').value,
+                type: document.getElementById('presence-type').value,
+                formateursPresents: document.getElementById('formateurs-presents').value.trim(),
+                heureDebut: document.getElementById('heure-debut').value,
+                heureFin: document.getElementById('heure-fin').value,
+                observations: document.getElementById('observations-presence').value
+            };
+            
+            if (!data.date || !data.type || !data.formateursPresents) {
+                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            const discordMessage = {
+                content: `📝 **FICHE DE PRÉSENCE FORMATEURS**`,
+                embeds: [{
+                    title: '👥 Fiche de Présence - Formation DIR',
+                    color: 0x2196f3,
+                    fields: [
+                        { name: '📅 Date de formation', value: data.date, inline: true },
+                        { name: '📚 Type de formation', value: data.type, inline: true },
+                        { name: '⏰ Horaires', value: `${data.heureDebut || 'Non renseigné'} - ${data.heureFin || 'Non renseigné'}`, inline: true },
+                        { name: '👨‍🏫 Formateurs présents', value: data.formateursPresents.split('\n').map(f => `• ${f.trim()}`).join('\n'), inline: false },
+                        { name: '📋 Observations', value: data.observations || 'Aucune observation particulière', inline: false }
+                    ],
+                    footer: { text: `Rapporteur: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            
+            sendToDiscord(WEBHOOKS.fichePresence, discordMessage, 'Fiche de présence envoyée avec succès');
+        }
+        
+        // Fonction générique pour envoyer vers Discord
+        function sendToDiscord(webhookUrl, message, successMessage) {
+            if (!webhookUrl || webhookUrl.startsWith('VOTRE_WEBHOOK')) {
+                showToast('Configuration requise', 'Veuillez configurer l\'URL du webhook Discord', 'warning');
+                return;
+            }
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message)
+            })
+            .then(response => {
+                if (response.ok) {
+                    showToast('Succès', successMessage, 'success');
+                    // Réinitialiser le formulaire
+                    const activeTab = document.querySelector('.tab-content.active');
+                    const form = activeTab.querySelector('form');
+                    if (form && form.id !== 'auth-form') {
+                        form.reset();
+                        // Réinitialiser le score total si c'est l'évaluation
+                        if (document.getElementById('total-score')) {
+                            updateTotalScore();
+                        }
+                        // Remettre la date du jour
+                        const today = getFrenchDate();
+                        const dateInputs = form.querySelectorAll('input[type="date"]');
+                        dateInputs.forEach(input => {
+                            input.value = today;
+                        });
+                    }
+                } else {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                showToast('Erreur', 'Échec de l\'envoi vers Discord', 'error');
+            });
+        }
+        
+        // Fonction toast
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toast-title');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toast.className = 'toast';
+            if (type === 'error') toast.classList.add('error');
+            if (type === 'warning') toast.classList.add('warning');
+            if (type === 'info') toast.classList.add('info');
+            
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
