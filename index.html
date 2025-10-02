@@ -18,7 +18,6 @@
             line-height: 1.5;
         }
         
-        /* Header gouvernemental */
         .gov-header {
             background: #fff;
             border-bottom: 3px solid #000091;
@@ -67,7 +66,6 @@
             margin-top: 2px;
         }
         
-        /* Navigation secondaire */
         .nav-secondary {
             background: #000091;
             color: white;
@@ -85,7 +83,6 @@
             margin-top: 3px;
         }
         
-        /* Onglets principaux */
         .main-tabs {
             background: white;
             border-bottom: 1px solid #e0e0e0;
@@ -123,7 +120,6 @@
             background: #f0f0f0;
         }
         
-        /* Contenu principal */
         .main-content {
             padding: 30px 0;
         }
@@ -162,6 +158,62 @@
         .content-header p {
             color: #666;
             font-size: 16px;
+        }
+        
+        /* Accueil - Cards de navigation */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .welcome-section h2 {
+            font-size: 32px;
+            color: #000091;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-section p {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .nav-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .nav-card:hover {
+            border-color: #000091;
+            box-shadow: 0 4px 12px rgba(0,0,145,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .nav-card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .nav-card h3 {
+            font-size: 20px;
+            color: #000091;
+            margin-bottom: 10px;
+        }
+        
+        .nav-card p {
+            color: #666;
+            font-size: 14px;
         }
         
         /* Formulaires */
@@ -205,7 +257,6 @@
             box-shadow: 0 0 0 2px rgba(0, 0, 145, 0.1);
         }
         
-        /* Grille de formulaire */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -226,6 +277,45 @@
             margin-bottom: 15px;
             border-bottom: 2px solid #000091;
             padding-bottom: 5px;
+        }
+        
+        /* Candidats multiples */
+        .candidat-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .candidat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000091;
+        }
+        
+        .candidat-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000091;
+        }
+        
+        .btn-remove-candidat {
+            background: #dc143c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .btn-remove-candidat:hover {
+            background: #b8112d;
         }
         
         /* Boutons */
@@ -270,22 +360,11 @@
             background: #008a45;
         }
         
-        .btn-danger {
-            background: #dc143c;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #b8112d;
-        }
-        
-        /* Score inputs */
         .score-input {
             width: 80px;
             text-align: center;
         }
         
-        /* Toast notifications */
         .toast {
             position: fixed;
             top: 20px;
@@ -327,7 +406,6 @@
             opacity: 0.9;
         }
         
-        /* Footer */
         .footer {
             background: #1e1e1e;
             color: white;
@@ -335,14 +413,16 @@
             margin-top: 50px;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-cards {
+                grid-template-columns: 1fr;
+            }
         }
         
-        /* Access control */
         .access-denied {
             text-align: center;
             padding: 50px;
@@ -354,7 +434,6 @@
             margin-bottom: 15px;
         }
         
-        /* Section d'évaluation */
         .evaluation-section {
             margin: 20px 0;
             padding: 20px;
@@ -396,13 +475,11 @@
     </style>
 </head>
 <body>
-    <!-- Toast pour notifications -->
     <div class="toast" id="toast">
         <div class="toast-title" id="toast-title"></div>
         <div class="toast-message" id="toast-message"></div>
     </div>
 
-    <!-- Header gouvernemental -->
     <header class="gov-header">
         <div class="container">
             <div class="gov-identity">
@@ -419,7 +496,6 @@
         </div>
     </header>
     
-    <!-- Navigation secondaire -->
     <nav class="nav-secondary">
         <div class="container">
             <div class="nav-title">Direction Interdépartementale des Routes</div>
@@ -427,7 +503,6 @@
         </div>
     </nav>
     
-    <!-- Authentification -->
     <div id="auth-section" class="main-content">
         <div class="content-card" style="max-width: 500px; margin: 50px auto;">
             <div class="content-header">
@@ -435,46 +510,34 @@
                 <p>Veuillez renseigner vos informations pour accéder à la formation</p>
             </div>
             
-            <form id="auth-form">
-                <div class="form-group">
-                    <label class="form-label">
-                        Nom <span class="required">*</span>
-                    </label>
-                    <input type="text" class="form-input" id="user-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">
-                        Prénom <span class="required">*</span>
-                    </label>
-                    <input type="text" class="form-input" id="user-firstname" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">
-                        Type de formation <span class="required">*</span>
-                    </label>
-                    <select class="form-select" id="user-role" required>
-                        <option value="">Sélectionnez...</option>
-                        <option value="formateur-certifie">Formateur certifié</option>
-                        <option value="formateur-test">Formateur en test</option>
-                        <option value="aide-formateur">Aide-formateur</option>
-                        <option value="candidat">Candidat</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">
-                    Continuer
-                </button>
-            </form>
+            <div class="form-group">
+                <label class="form-label">Nom <span class="required">*</span></label>
+                <input type="text" class="form-input" id="user-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Prénom <span class="required">*</span></label>
+                <input type="text" class="form-input" id="user-firstname" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Type de formation <span class="required">*</span></label>
+                <select class="form-select" id="user-role" required>
+                    <option value="">Sélectionnez...</option>
+                    <option value="formateur-certifie">Formateur certifié</option>
+                    <option value="formateur-test">Formateur en test</option>
+                    <option value="aide-formateur">Aide-formateur</option>
+                </select>
+            </div>
+            
+            <button type="button" class="btn btn-primary" onclick="authenticate()">Continuer</button>
         </div>
     </div>
     
-    <!-- Onglets principaux -->
     <div id="main-platform" style="display: none;">
         <div class="main-tabs">
             <div class="tabs-nav">
-                <button class="tab-btn active" onclick="showTab('quiz')">Quiz Formateurs</button>
+                <button class="tab-btn active" onclick="showTab('accueil')">Accueil</button>
                 <button class="tab-btn" onclick="showTab('evaluation-non-formees')">Évaluation Non Formées</button>
                 <button class="tab-btn" onclick="showTab('resultat-formation')">Résultats Formation</button>
                 <button class="tab-btn" onclick="showTab('evaluation-formateur')" id="tab-eval-formateur" style="display: none;">Évaluation Formateur</button>
@@ -482,20 +545,42 @@
             </div>
         </div>
         
-        <!-- Contenu principal -->
         <main class="main-content">
-            <!-- Onglet Quiz -->
-            <div class="tab-content active" id="tab-quiz">
+            <div class="tab-content active" id="tab-accueil">
                 <div class="content-card">
-                    <div class="content-header">
-                        <h1>Quiz d'évaluation des formateurs</h1>
-                        <p>Évaluation des connaissances pour les formateurs DIR</p>
+                    <div class="welcome-section">
+                        <h2>Bienvenue sur la plateforme DIR</h2>
+                        <p>Sélectionnez une section pour commencer</p>
                     </div>
-                    <p>Le quiz est en refonte...</p>
+                    
+                    <div class="nav-cards">
+                        <div class="nav-card" onclick="showTab('evaluation-non-formees')">
+                            <div class="nav-card-icon"></div>
+                            <h3>Évaluation Non Formées</h3>
+                            <p>Évaluation pratique et théorique des candidats</p>
+                        </div>
+                        
+                        <div class="nav-card" onclick="showTab('resultat-formation')">
+                            <div class="nav-card-icon"></div>
+                            <h3>Résultats Formation</h3>
+                            <p>Compilation des résultats de session</p>
+                        </div>
+                        
+                        <div class="nav-card" onclick="showTab('evaluation-formateur')" id="card-eval-formateur" style="display: none;">
+                            <div class="nav-card-icon"></div>
+                            <h3>Évaluation Formateur</h3>
+                            <p>Évaluation des aide-formateurs</p>
+                        </div>
+                        
+                        <div class="nav-card" onclick="showTab('fiche-presence')">
+                            <div class="nav-card-icon"></div>
+                            <h3>Fiche de Présence</h3>
+                            <p>Enregistrement des présences</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Onglet Évaluation Non Formées -->
             <div class="tab-content" id="tab-evaluation-non-formees">
                 <div class="content-card">
                     <div class="content-header">
@@ -503,110 +588,18 @@
                         <p>Évaluation pratique et théorique des candidats non formés</p>
                     </div>
                     
-                    <form id="evaluation-form">
-                        <div class="form-grid">
-                            <div class="form-section">
-                                <div class="section-title">Informations Générales</div>
-                                <div class="form-group">
-                                    <label class="form-label">Date <span class="required">*</span></label>
-                                    <input type="date" class="form-input" id="eval-date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Candidat(e) <span class="required">*</span></label>
-                                    <input type="text" class="form-input" id="candidat-name" placeholder="Nom et prénom" required>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="evaluation-section">
-                            <div class="section-title">Épreuve Pratique - Parcours de conduite</div>
-                            <div class="score-row">
-                                <span class="score-label">Parcours de conduite</span>
-                                <span class="score-max">/ 4</span>
-                                <input type="number" class="form-input score-input" id="conduite" min="0" max="4" step="0.5">
-                            </div>
-                        </div>
-                        
-                        <div class="evaluation-section">
-                            <div class="section-title">Situations de Balisage</div>
-                            <div class="score-row">
-                                <span class="score-label">Situation N°1 - Balisage sur une route en ville</span>
-                                <span class="score-max">/ 5</span>
-                                <input type="number" class="form-input score-input" id="situation1" min="0" max="5" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Situation N°2 - Balisage intérieur ou extérieur rond-point</span>
-                                <span class="score-max">/ 5</span>
-                                <input type="number" class="form-input score-input" id="situation2" min="0" max="5" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Situation N°3 - Balisage sur autoroute</span>
-                                <span class="score-max">/ 5</span>
-                                <input type="number" class="form-input score-input" id="situation3" min="0" max="5" step="0.5">
-                            </div>
-                        </div>
-                        
-                        <div class="evaluation-section">
-                            <div class="section-title">Questions Théoriques</div>
-                            <div class="score-row">
-                                <span class="score-label">La DIR est-elle une société privée ou fait-elle partie du secteur public ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q1" min="0" max="1" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Quel véhicule n'a-t-on pas le droit de conduire en étant A3 (hors spécialité) ?</span>
-                                <span class="score-max">/ 2</span>
-                                <input type="number" class="form-input score-input" id="q2" min="0" max="2" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Comment se rendre sur une intervention ?</span>
-                                <span class="score-max">/ 2</span>
-                                <input type="number" class="form-input score-input" id="q3" min="0" max="2" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Que signifie F.L.U (Flèche Lumineuse d'Urgence) ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q4" min="0" max="1" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">La DIR peut-elle passer au feu rouge lors d'une intervention ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q5" min="0" max="1" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Quels sont les véhicules que l'on peut remorquer avec la dépanneuse ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q6" min="0" max="1" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Que faut-il faire après chaque fin d'intervention ?</span>
-                                <span class="score-max">/ 2</span>
-                                <input type="number" class="form-input score-input" id="q7" min="0" max="2" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">Est-il possible de conduire un Renault Trafic en étant A3 ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q8" min="0" max="1" step="0.5">
-                            </div>
-                            <div class="score-row">
-                                <span class="score-label">À quoi correspond la tenue orange et la tenue jaune/bleu ?</span>
-                                <span class="score-max">/ 1</span>
-                                <input type="number" class="form-input score-input" id="q9" min="0" max="1" step="0.5">
-                            </div>
-                        </div>
-                        
-                        <div class="total-score">
-                            Résultat Total: <span id="total-score">0</span> / 31 (Minimum 24 sur 31)
-                        </div>
-                        
-                        <button type="button" class="btn btn-primary" onclick="submitEvaluationNonFormees()">
-                            Envoyer l'évaluation
-                        </button>
-                    </form>
+                    <div class="form-group">
+                        <label class="form-label">Date <span class="required">*</span></label>
+                        <input type="date" class="form-input" id="eval-date" required>
+                    </div>
+                    
+                    <div id="candidats-container"></div>
+                    
+                    <button type="button" class="btn btn-secondary" onclick="addCandidat()">+ Ajouter un candidat</button>
+                    <button type="button" class="btn btn-primary" onclick="submitAllEvaluations()">Envoyer toutes les évaluations</button>
                 </div>
             </div>
             
-            <!-- Onglet Résultats Formation -->
             <div class="tab-content" id="tab-resultat-formation">
                 <div class="content-card">
                     <div class="content-header">
@@ -614,40 +607,35 @@
                         <p>Compilation des résultats d'une session de formation</p>
                     </div>
                     
-                    <form id="results-form">
-                        <div class="form-group">
-                            <label class="form-label">Date <span class="required">*</span></label>
-                            <input type="date" class="form-input" id="results-date" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Identités des candidats (un par ligne) <span class="required">*</span></label>
-                            <textarea class="form-textarea" id="all-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Personnes admises en tant que stagiaire (un par ligne)</label>
-                            <textarea class="form-textarea" id="admitted-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Ont passé leur formation mais ont été refusés (un par ligne)</label>
-                            <textarea class="form-textarea" id="refused-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
-                        </div>
-                        
-                        <button type="button" class="btn btn-primary" onclick="submitResultsFormation()">
-                            Envoyer les résultats
-                        </button>
-                    </form>
+                    <div class="form-group">
+                        <label class="form-label">Date <span class="required">*</span></label>
+                        <input type="date" class="form-input" id="results-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Identités des candidats (un par ligne) <span class="required">*</span></label>
+                        <textarea class="form-textarea" id="all-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Personnes admises en tant que stagiaire (un par ligne)</label>
+                        <textarea class="form-textarea" id="admitted-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ont passé leur formation mais ont été refusés (un par ligne)</label>
+                        <textarea class="form-textarea" id="refused-candidates" placeholder="Nom Prénom&#10;Nom Prénom&#10;..." style="min-height: 120px;"></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary" onclick="submitResultsFormation()">Envoyer les résultats</button>
                 </div>
             </div>
             
-            <!-- Onglet Évaluation Formateur -->
             <div class="tab-content" id="tab-evaluation-formateur">
                 <div class="content-card">
                     <div class="content-header">
                         <h1>Évaluation Aide-formateur / Formateur en test</h1>
-                        <p>Réservé aux formateurs certifiés pour évaluer les aide-formateurs et formateurs en test</p>
+                        <p>Réservé aux formateurs certifiés</p>
                     </div>
                     
                     <div id="formateur-access-denied" class="access-denied" style="display: none;">
@@ -655,7 +643,7 @@
                         <p>Cette section est réservée aux formateurs certifiés uniquement.</p>
                     </div>
                     
-                    <form id="formateur-eval-form">
+                    <div id="formateur-eval-form">
                         <div class="form-group">
                             <label class="form-label">Date de la formation <span class="required">*</span></label>
                             <input type="date" class="form-input" id="formateur-date" required>
@@ -705,14 +693,11 @@
                             </div>
                         </div>
                         
-                        <button type="button" class="btn btn-primary" onclick="submitFormateurEvaluation()">
-                            Envoyer l'évaluation
-                        </button>
-                    </form>
+                        <button type="button" class="btn btn-primary" onclick="submitFormateurEvaluation()">Envoyer l'évaluation</button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Onglet Fiche de Présence -->
             <div class="tab-content" id="tab-fiche-presence">
                 <div class="content-card">
                     <div class="content-header">
@@ -720,53 +705,48 @@
                         <p>Enregistrement de la présence des formateurs</p>
                     </div>
                     
-                    <form id="presence-form">
-                        <div class="form-group">
-                            <label class="form-label">Date de formation <span class="required">*</span></label>
-                            <input type="date" class="form-input" id="presence-date" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Type de formation <span class="required">*</span></label>
-                            <select class="form-select" id="presence-type" required>
-                                <option value="">Sélectionnez...</option>
-                                <option value="Initiale">Formation Initiale</option>
-                                <option value="Continue">Formation Continue</option>
-                                <option value="Recyclage">Recyclage</option>
-                                <option value="Spécialisée">Formation Spécialisée</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Formateurs présents (un par ligne) <span class="required">*</span></label>
-                            <textarea class="form-textarea" id="formateurs-presents" placeholder="Nom Prénom - Statut (Certifié/Test/Aide)&#10;Nom Prénom - Statut&#10;..." style="min-height: 120px;" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Heure de début</label>
-                            <input type="time" class="form-input" id="heure-debut">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Heure de fin</label>
-                            <input type="time" class="form-input" id="heure-fin">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Observations</label>
-                            <textarea class="form-textarea" id="observations-presence" placeholder="Remarques particulières, incidents, etc."></textarea>
-                        </div>
-                        
-                        <button type="button" class="btn btn-primary" onclick="submitFichePresence()">
-                            Envoyer la fiche de présence
-                        </button>
-                    </form>
+                    <div class="form-group">
+                        <label class="form-label">Date de formation <span class="required">*</span></label>
+                        <input type="date" class="form-input" id="presence-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Type de formation <span class="required">*</span></label>
+                        <select class="form-select" id="presence-type" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="Initiale">Formation Initiale</option>
+                            <option value="Continue">Formation Continue</option>
+                            <option value="Recyclage">Recyclage</option>
+                            <option value="Spécialisée">Formation Spécialisée</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Formateurs présents (un par ligne) <span class="required">*</span></label>
+                        <textarea class="form-textarea" id="formateurs-presents" placeholder="Nom Prénom - Statut (Certifié/Test/Aide)&#10;Nom Prénom - Statut&#10;..." style="min-height: 120px;" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Heure de début</label>
+                        <input type="time" class="form-input" id="heure-debut">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Heure de fin</label>
+                        <input type="time" class="form-input" id="heure-fin">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Observations</label>
+                        <textarea class="form-textarea" id="observations-presence" placeholder="Remarques particulières, incidents, etc."></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary" onclick="submitFichePresence()">Envoyer la fiche de présence</button>
                 </div>
             </div>
         </main>
     </div>
     
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>© Galax Rôleplay 2025 - Tous droits réservés. Toute reproduction, distribution ou utilisation non autorisée du contenu est strictement interdite et réglementée.</p>
@@ -774,46 +754,25 @@
     </footer>
     
     <script>
-        // Configuration des webhooks Discord
         const WEBHOOKS = {
-            quiz: 'https://discord.com/api/webhooks/1416783632172847114/XKWomZNvwN-9xeFVVLKyL0FEWLAL56LAusrpc1MTcrBbkpTl7N_9ouqLcNTtOFHAAC9O',
             evaluationNonFormees: 'https://discord.com/api/webhooks/1420488869685624844/0-jiH63lVXOXEVA3JwLPfu4fe9diGVk_qoX-F2clfl-BNQvKdp7gbqdn9RvzrKoMDro6',
             resultatsFormation: 'https://discord.com/api/webhooks/1420489387015147550/mCOoORv-OOXnrc-LWYeiWH1bI8xGMoSrPREJudNDcsljCBA_jiZbWqOYzyLRHtnj32jZ',
             evaluationFormateur: 'https://discord.com/api/webhooks/1420489482171453667/BGp0Xw2qFDKKrkV0eu5ebXkLkJdra58tS3jy03oSA4yPkdnhdZ_OrYX21Nn0RmBazpYl',
             fichePresence: 'https://discord.com/api/webhooks/1420489584848146492/fCwIXkGqbc8oolHupRoNbnnM0jKS6tPjojkoZ0sVEwz0JFU9sOwIJxKkIyODFc-CQCCK'
         };
         
-        let currentUser = {
-            name: '',
-            firstname: '',
-            role: ''
-        };
+        let currentUser = { name: '', firstname: '', role: '' };
+        let candidatCounter = 0;
         
-        // Fonction pour obtenir l'heure française
         function getFrenchDateTime() {
-            return new Date().toLocaleString('fr-FR', {
-                timeZone: 'Europe/Paris',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
+            return new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
         }
         
         function getFrenchDate() {
-            return new Date().toLocaleDateString('fr-FR', {
-                timeZone: 'Europe/Paris',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            }).split('/').reverse().join('-');
+            return new Date().toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-');
         }
         
-        // Authentification simplifiée
-        document.getElementById('auth-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+        function authenticate() {
             const name = document.getElementById('user-name').value.trim();
             const firstname = document.getElementById('user-firstname').value.trim();
             const role = document.getElementById('user-role').value;
@@ -823,164 +782,280 @@
                 return;
             }
             
-            currentUser.name = name;
-            currentUser.firstname = firstname;
-            currentUser.role = role;
+            currentUser = { name, firstname, role };
             
-            // Masquer l'auth et afficher la plateforme
             document.getElementById('auth-section').style.display = 'none';
             document.getElementById('main-platform').style.display = 'block';
             
-            // Configurer l'accès selon le rôle
             setupUserAccess(role);
-            
-            // Pré-remplir les champs avec le nom de l'utilisateur
             prefillUserFields();
+            addCandidat();
             
             showToast('Connexion réussie', `Bienvenue ${firstname} ${name}`, 'success');
-        });
+        }
         
         function setupUserAccess(role) {
             const evalFormateurTab = document.getElementById('tab-eval-formateur');
+            const cardEvalFormateur = document.getElementById('card-eval-formateur');
             const evalFormateurAccess = document.getElementById('formateur-access-denied');
             const evalFormateurForm = document.getElementById('formateur-eval-form');
             
             if (role === 'formateur-certifie') {
-                // Formateur certifié : accès à tout
                 evalFormateurTab.style.display = 'block';
+                cardEvalFormateur.style.display = 'block';
                 evalFormateurAccess.style.display = 'none';
                 evalFormateurForm.style.display = 'block';
             } else {
-                // Autres rôles : pas d'accès à l'évaluation formateur
                 evalFormateurTab.style.display = 'none';
+                cardEvalFormateur.style.display = 'none';
             }
         }
         
         function prefillUserFields() {
-            // Pré-remplir les champs avec le nom du formateur
             const formateurEvaluateur = document.getElementById('formateur-evaluateur');
             if (formateurEvaluateur) {
                 formateurEvaluateur.value = `${currentUser.firstname} ${currentUser.name}`;
             }
+            
+            const today = getFrenchDate();
+            document.getElementById('eval-date').value = today;
+            document.getElementById('results-date').value = today;
+            document.getElementById('formateur-date').value = today;
+            document.getElementById('presence-date').value = today;
         }
         
-        // Navigation entre onglets
         function showTab(tabName) {
-            // Masquer tous les onglets
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             
-            // Désactiver tous les boutons d'onglet
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Afficher l'onglet sélectionné
             document.getElementById(`tab-${tabName}`).classList.add('active');
             
-            // Activer le bouton correspondant
-            event.target.classList.add('active');
+            const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+                btn.getAttribute('onclick')?.includes(tabName)
+            );
+            if (clickedBtn) clickedBtn.classList.add('active');
         }
         
-        // Calcul automatique du score total pour l'évaluation non formées
-        function updateTotalScore() {
-            const fields = [
-                'conduite', 'situation1', 'situation2', 'situation3',
-                'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'
-            ];
+        function addCandidat() {
+            candidatCounter++;
+            const container = document.getElementById('candidats-container');
             
-            let total = 0;
-            fields.forEach(field => {
-                const value = parseFloat(document.getElementById(field).value) || 0;
-                total += value;
+            const candidatDiv = document.createElement('div');
+            candidatDiv.className = 'candidat-item';
+            candidatDiv.id = `candidat-${candidatCounter}`;
+            candidatDiv.dataset.id = candidatCounter;
+            
+            candidatDiv.innerHTML = `
+                <div class="candidat-header">
+                    <span class="candidat-number">Candidat #${candidatCounter}</span>
+                    <button type="button" class="btn-remove-candidat" onclick="removeCandidat(${candidatCounter})">✕ Supprimer</button>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nom du candidat <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="candidat-name-${candidatCounter}" placeholder="Nom et prénom" required>
+                </div>
+                
+                <div class="evaluation-section">
+                    <div class="section-title">Épreuve Pratique</div>
+                    <div class="score-row">
+                        <span class="score-label">Parcours de conduite</span>
+                        <span class="score-max">/ 4</span>
+                        <input type="number" class="form-input score-input" id="conduite-${candidatCounter}" min="0" max="4" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                </div>
+                
+                <div class="evaluation-section">
+                    <div class="section-title">Situations de Balisage</div>
+                    <div class="score-row">
+                        <span class="score-label">Situation N°1 - Route en ville</span>
+                        <span class="score-max">/ 5</span>
+                        <input type="number" class="form-input score-input" id="situation1-${candidatCounter}" min="0" max="5" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Situation N°2 - Rond-point</span>
+                        <span class="score-max">/ 5</span>
+                        <input type="number" class="form-input score-input" id="situation2-${candidatCounter}" min="0" max="5" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Situation N°3 - Autoroute</span>
+                        <span class="score-max">/ 5</span>
+                        <input type="number" class="form-input score-input" id="situation3-${candidatCounter}" min="0" max="5" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                </div>
+                
+                <div class="evaluation-section">
+                    <div class="section-title">Questions Théoriques</div>
+                    <div class="score-row">
+                        <span class="score-label">La DIR est-elle une société privée ou fait-elle partie du secteur public ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q1-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Quel véhicule n'a-t-on pas le droit de conduire en étant A3 (hors spécialité) ?</span>
+                        <span class="score-max">/ 2</span>
+                        <input type="number" class="form-input score-input" id="q2-${candidatCounter}" min="0" max="2" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Comment se rendre sur une intervention ?</span>
+                        <span class="score-max">/ 2</span>
+                        <input type="number" class="form-input score-input" id="q3-${candidatCounter}" min="0" max="2" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Que signifie F.L.U (Flèche Lumineuse d'Urgence) ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q4-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">La DIR peut-elle passer au feu rouge lors d'une intervention ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q5-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Quels sont les véhicules que l'on peut remorquer avec la dépanneuse ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q6-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Que faut-il faire après chaque fin d'intervention ?</span>
+                        <span class="score-max">/ 2</span>
+                        <input type="number" class="form-input score-input" id="q7-${candidatCounter}" min="0" max="2" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Est-il possible de conduire un Renault Trafic en étant A3 ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q8-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">À quoi correspond la tenue orange et la tenue jaune/bleu ?</span>
+                        <span class="score-max">/ 1</span>
+                        <input type="number" class="form-input score-input" id="q9-${candidatCounter}" min="0" max="1" step="0.5" data-candidat="${candidatCounter}">
+                    </div>
+                </div>
+                
+                <div class="total-score" id="total-score-${candidatCounter}">
+                    Résultat Total: <span id="score-value-${candidatCounter}">0</span> / 31 (Minimum 24 sur 31)
+                </div>
+            `;
+            
+            container.appendChild(candidatDiv);
+            
+            const inputs = candidatDiv.querySelectorAll('.score-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => updateCandidatScore(candidatCounter));
             });
-            
-            document.getElementById('total-score').textContent = total.toFixed(1);
-            
-            // Changer la couleur selon le résultat
-            const totalScoreElement = document.querySelector('.total-score');
-            if (total >= 24) {
-                totalScoreElement.style.background = '#00a651';
-            } else {
-                totalScoreElement.style.background = '#dc143c';
+        }
+        
+        function removeCandidat(id) {
+            const candidat = document.getElementById(`candidat-${id}`);
+            if (candidat) {
+                candidat.remove();
+                showToast('Candidat supprimé', 'Le candidat a été retiré de la liste', 'info');
             }
         }
         
-        // Ajouter des listeners pour le calcul automatique
-        document.addEventListener('DOMContentLoaded', function() {
-            const scoreInputs = document.querySelectorAll('.score-input');
-            scoreInputs.forEach(input => {
-                input.addEventListener('input', updateTotalScore);
+        function updateCandidatScore(id) {
+            const fields = ['conduite', 'situation1', 'situation2', 'situation3', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
+            let total = 0;
+            
+            fields.forEach(field => {
+                const input = document.getElementById(`${field}-${id}`);
+                if (input) {
+                    total += parseFloat(input.value) || 0;
+                }
             });
             
-            // Initialiser les dates à aujourd'hui (heure française)
-            const today = getFrenchDate();
-            const evalDate = document.getElementById('eval-date');
-            const resultsDate = document.getElementById('results-date');
-            const formateurDate = document.getElementById('formateur-date');
-            const presenceDate = document.getElementById('presence-date');
+            const scoreValue = document.getElementById(`score-value-${id}`);
+            const totalScoreDiv = document.getElementById(`total-score-${id}`);
             
-            if (evalDate) evalDate.value = today;
-            if (resultsDate) resultsDate.value = today;
-            if (formateurDate) formateurDate.value = today;
-            if (presenceDate) presenceDate.value = today;
-        });
+            if (scoreValue) scoreValue.textContent = total.toFixed(1);
+            if (totalScoreDiv) {
+                totalScoreDiv.style.background = total >= 24 ? '#00a651' : '#dc143c';
+            }
+        }
         
-        // Fonctions de soumission des formulaires
-        function submitEvaluationNonFormees() {
-            const form = document.getElementById('evaluation-form');
-            
-            if (!form.checkValidity()) {
-                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+        function submitAllEvaluations() {
+            const date = document.getElementById('eval-date').value;
+            if (!date) {
+                showToast('Erreur', 'Veuillez sélectionner une date', 'error');
                 return;
             }
             
-            const data = {
-                date: document.getElementById('eval-date').value,
-                candidat: document.getElementById('candidat-name').value,
-                scores: {
-                    conduite: document.getElementById('conduite').value || 0,
-                    situation1: document.getElementById('situation1').value || 0,
-                    situation2: document.getElementById('situation2').value || 0,
-                    situation3: document.getElementById('situation3').value || 0,
-                    q1: document.getElementById('q1').value || 0,
-                    q2: document.getElementById('q2').value || 0,
-                    q3: document.getElementById('q3').value || 0,
-                    q4: document.getElementById('q4').value || 0,
-                    q5: document.getElementById('q5').value || 0,
-                    q6: document.getElementById('q6').value || 0,
-                    q7: document.getElementById('q7').value || 0,
-                    q8: document.getElementById('q8').value || 0,
-                    q9: document.getElementById('q9').value || 0
-                },
-                total: document.getElementById('total-score').textContent
-            };
+            const candidats = document.querySelectorAll('.candidat-item');
+            if (candidats.length === 0) {
+                showToast('Erreur', 'Aucun candidat à évaluer', 'error');
+                return;
+            }
             
-            const totalScore = parseFloat(data.total);
-            const passed = totalScore >= 24;
-            
-            const discordMessage = {
-                content: `📋 **ÉVALUATION NON FORMÉES**`,
-                embeds: [{
-                    title: '📊 FORMATION INITIALE - ÉVALUATION',
-                    color: passed ? 0x00a651 : 0xdc143c,
-                    fields: [
-                        { name: '📅 Date', value: data.date, inline: true },
-                        { name: '👤 Candidat(e)', value: data.candidat, inline: true },
-                        { name: '📊 Résultat', value: `**${data.total}/31** ${passed ? '✅ ADMIS' : '❌ ÉCHEC'}`, inline: true },
-                        { name: '🚗 Parcours de conduite', value: `*${data.scores.conduite}/4*`, inline: true },
-                        { name: '🏙️ Situation N°1 (Route ville)', value: `*${data.scores.situation1}/5*`, inline: true },
-                        { name: '🔄 Situation N°2 (Rond-point)', value: `*${data.scores.situation2}/5*`, inline: true },
-                        { name: '🛣️ Situation N°3 (Autoroute)', value: `*${data.scores.situation3}/5*`, inline: true },
-                        { name: '❓ Questions théoriques', value: `**La DIR est-elle une société privée ou fait-elle partie du secteur public ? ${data.scores.q1}/1\nQuel véhicule n'a-t-on pas le droit de conduire en étant A3 (hors spécialité) ? ${data.scores.q2}/2\nComment se rendre sur une intervention ? ${data.scores.q3}/2\nQue signifie F.L.U (Flèche Lumineuse d'Urgence) ? ${data.scores.q4}/1\nLa DIR peut-elle passer au feu rouge lors d'une intervention ? ${data.scores.q5}/1\nQuels sont les véhicules que l'on peut remorquer avec la dépanneuse ? ${data.scores.q6}/1\nQue faut-il faire après chaque fin d'intervention ? ${data.scores.q7}/2\nEst-il possible de conduire un Renault Trafic en étant A3 ? ${data.scores.q8}/1\nÀ quoi correspond la tenue orange et la tenue jaune/bleu ? ${data.scores.q9}/1**`, inline: false }
-                    ],
-                    footer: { text: `Évalué par: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
-                    timestamp: new Date().toISOString()
-                }]
-            };
-            
-            sendToDiscord(WEBHOOKS.evaluationNonFormees, discordMessage, 'Évaluation envoyée avec succès');
+            let submitted = 0;
+            candidats.forEach((candidat, index) => {
+                const id = candidat.dataset.id;
+                const name = document.getElementById(`candidat-name-${id}`).value.trim();
+                
+                if (!name) {
+                    showToast('Erreur', `Le nom du candidat #${index + 1} est requis`, 'error');
+                    return;
+                }
+                
+                const data = {
+                    date: date,
+                    candidat: name,
+                    scores: {
+                        conduite: document.getElementById(`conduite-${id}`).value || 0,
+                        situation1: document.getElementById(`situation1-${id}`).value || 0,
+                        situation2: document.getElementById(`situation2-${id}`).value || 0,
+                        situation3: document.getElementById(`situation3-${id}`).value || 0,
+                        q1: document.getElementById(`q1-${id}`).value || 0,
+                        q2: document.getElementById(`q2-${id}`).value || 0,
+                        q3: document.getElementById(`q3-${id}`).value || 0,
+                        q4: document.getElementById(`q4-${id}`).value || 0,
+                        q5: document.getElementById(`q5-${id}`).value || 0,
+                        q6: document.getElementById(`q6-${id}`).value || 0,
+                        q7: document.getElementById(`q7-${id}`).value || 0,
+                        q8: document.getElementById(`q8-${id}`).value || 0,
+                        q9: document.getElementById(`q9-${id}`).value || 0
+                    },
+                    total: document.getElementById(`score-value-${id}`).textContent
+                };
+                
+                const totalScore = parseFloat(data.total);
+                const passed = totalScore >= 24;
+                
+                const discordMessage = {
+                    content: `📋 **ÉVALUATION NON FORMÉES**`,
+                    embeds: [{
+                        title: '📊 FORMATION INITIALE - ÉVALUATION',
+                        color: passed ? 0x00a651 : 0xdc143c,
+                        fields: [
+                            { name: '📅 Date', value: data.date, inline: true },
+                            { name: '👤 Candidat(e)', value: data.candidat, inline: true },
+                            { name: '📊 Résultat', value: `**${data.total}/31** ${passed ? '✅ ADMIS' : '❌ ÉCHEC'}`, inline: true },
+                            { name: '🚗 Parcours de conduite', value: `*${data.scores.conduite}/4*`, inline: true },
+                            { name: '🏙️ Situation N°1 (Route ville)', value: `*${data.scores.situation1}/5*`, inline: true },
+                            { name: '🔄 Situation N°2 (Rond-point)', value: `*${data.scores.situation2}/5*`, inline: true },
+                            { name: '🛣️ Situation N°3 (Autoroute)', value: `*${data.scores.situation3}/5*`, inline: true },
+                            { name: '❓ Questions théoriques', value: `**Q1: ${data.scores.q1}/1 | Q2: ${data.scores.q2}/2 | Q3: ${data.scores.q3}/2 | Q4: ${data.scores.q4}/1 | Q5: ${data.scores.q5}/1 | Q6: ${data.scores.q6}/1 | Q7: ${data.scores.q7}/2 | Q8: ${data.scores.q8}/1 | Q9: ${data.scores.q9}/1**`, inline: false }
+                        ],
+                        footer: { text: `Évalué par: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                
+                fetch(WEBHOOKS.evaluationNonFormees, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordMessage)
+                })
+                .then(response => {
+                    if (response.ok) submitted++;
+                    if (submitted === candidats.length) {
+                        showToast('Succès', `${submitted} évaluation(s) envoyée(s)`, 'success');
+                        document.getElementById('candidats-container').innerHTML = '';
+                        candidatCounter = 0;
+                        addCandidat();
+                    }
+                });
+            });
         }
         
         function submitResultsFormation() {
@@ -999,24 +1074,18 @@
                 embeds: [{
                     title: '📈 RÉSULTAT FORMATION : Initiale',
                     color: 0x000091,
-                    description: `**Date :** ${date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Identités des candidats (Nom et prénom) :**\n${allCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n')}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Personnes admises en tant que stagiaire (Nom et prénom) :**\n${admittedCandidates ? admittedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n**Ont passé leur formation mais ont été refusés (Nom et prénom) :**\n${refusedCandidates ? refusedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n▬▬▬▬▬▬▬▬▬▬▬\n**Cordialement,**`,
+                    description: `**Date :** ${date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Identités des candidats :**\n${allCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n')}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Personnes admises :**\n${admittedCandidates ? admittedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n**Personnes refusées :**\n${refusedCandidates ? refusedCandidates.split('\n').map(name => `- ${name.trim()}`).join('\n') : '- Aucun'}\n\n▬▬▬▬▬▬▬▬▬▬▬`,
                     footer: { text: `Rapporteur: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
                     timestamp: new Date().toISOString()
                 }]
             };
             
-            sendToDiscord(WEBHOOKS.resultatsFormation, discordMessage, 'Résultats de formation envoyés avec succès');
+            sendToDiscord(WEBHOOKS.resultatsFormation, discordMessage, 'Résultats de formation envoyés');
         }
         
         function submitFormateurEvaluation() {
             if (currentUser.role !== 'formateur-certifie') {
-                showToast('Accès refusé', 'Vous n\'avez pas les permissions nécessaires', 'error');
-                return;
-            }
-            
-            const form = document.getElementById('formateur-eval-form');
-            if (!form.checkValidity()) {
-                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                showToast('Accès refusé', 'Réservé aux formateurs certifiés', 'error');
                 return;
             }
             
@@ -1032,18 +1101,23 @@
                 infosComplementaires: document.getElementById('infos-complementaires').value
             };
             
+            if (!data.date || !data.personneEvaluee || !data.clarteExplications) {
+                showToast('Erreur', 'Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
             const discordMessage = {
                 content: `👨‍🏫 **ÉVALUATION FORMATEUR**`,
                 embeds: [{
                     title: '📝 Évaluation Aide-formateur/Formateur en test',
                     color: 0xff6600,
-                    description: `**Date de la formation :** ${data.date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Identité de la personne évaluée :** ${data.personneEvaluee}\n**Identité du formateur :** ${data.formateurEvaluateur}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Clarté des explications :** ${data.clarteExplications}\n\n**Capacité d'adaptation et pédagogie :** ${data.adaptationPedagogie}\n\n**Interaction et communication :** ${data.interactionCommunication}\n\n**Maîtrise des cours :** ${data.maitriseCours}\n\n**Utilisation du support d'évaluation des candidats :** ${data.utilisationSupport}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Informations complémentaires :**\n${data.infosComplementaires || 'Aucune'}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Cordialement,**`,
+                    description: `**Date :** ${data.date}\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Personne évaluée :** ${data.personneEvaluee}\n**Formateur :** ${data.formateurEvaluateur}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Clarté des explications :** ${data.clarteExplications}\n\n**Capacité d'adaptation :** ${data.adaptationPedagogie}\n\n**Interaction :** ${data.interactionCommunication}\n\n**Maîtrise des cours :** ${data.maitriseCours}\n\n**Utilisation du support :** ${data.utilisationSupport}\n\n▬▬▬▬▬▬▬▬▬▬▬\n\n**Informations complémentaires :**\n${data.infosComplementaires || 'Aucune'}`,
                     footer: { text: `Évalué par: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
                     timestamp: new Date().toISOString()
                 }]
             };
             
-            sendToDiscord(WEBHOOKS.evaluationFormateur, discordMessage, 'Évaluation formateur envoyée avec succès');
+            sendToDiscord(WEBHOOKS.evaluationFormateur, discordMessage, 'Évaluation formateur envoyée');
         }
         
         function submitFichePresence() {
@@ -1062,69 +1136,44 @@
             }
             
             const discordMessage = {
-                content: `📝 **FICHE DE PRÉSENCE FORMATEURS**`,
+                content: `📝 **FICHE DE PRÉSENCE**`,
                 embeds: [{
                     title: '👥 Fiche de Présence - Formation DIR',
                     color: 0x2196f3,
                     fields: [
-                        { name: '📅 Date de formation', value: data.date, inline: true },
-                        { name: '📚 Type de formation', value: data.type, inline: true },
+                        { name: '📅 Date', value: data.date, inline: true },
+                        { name: '📚 Type', value: data.type, inline: true },
                         { name: '⏰ Horaires', value: `${data.heureDebut || 'Non renseigné'} - ${data.heureFin || 'Non renseigné'}`, inline: true },
                         { name: '👨‍🏫 Formateurs présents', value: data.formateursPresents.split('\n').map(f => `• ${f.trim()}`).join('\n'), inline: false },
-                        { name: '📋 Observations', value: data.observations || 'Aucune observation particulière', inline: false }
+                        { name: '📋 Observations', value: data.observations || 'Aucune', inline: false }
                     ],
                     footer: { text: `Rapporteur: ${currentUser.firstname} ${currentUser.name} - ${getFrenchDateTime()}` },
                     timestamp: new Date().toISOString()
                 }]
             };
             
-            sendToDiscord(WEBHOOKS.fichePresence, discordMessage, 'Fiche de présence envoyée avec succès');
+            sendToDiscord(WEBHOOKS.fichePresence, discordMessage, 'Fiche de présence envoyée');
         }
         
-        // Fonction générique pour envoyer vers Discord
         function sendToDiscord(webhookUrl, message, successMessage) {
-            if (!webhookUrl || webhookUrl.startsWith('VOTRE_WEBHOOK')) {
-                showToast('Configuration requise', 'Veuillez configurer l\'URL du webhook Discord', 'warning');
-                return;
-            }
-            
             fetch(webhookUrl, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(message)
             })
             .then(response => {
                 if (response.ok) {
                     showToast('Succès', successMessage, 'success');
-                    // Réinitialiser le formulaire
-                    const activeTab = document.querySelector('.tab-content.active');
-                    const form = activeTab.querySelector('form');
-                    if (form && form.id !== 'auth-form') {
-                        form.reset();
-                        // Réinitialiser le score total si c'est l'évaluation
-                        if (document.getElementById('total-score')) {
-                            updateTotalScore();
-                        }
-                        // Remettre la date du jour
-                        const today = getFrenchDate();
-                        const dateInputs = form.querySelectorAll('input[type="date"]');
-                        dateInputs.forEach(input => {
-                            input.value = today;
-                        });
-                    }
                 } else {
                     throw new Error(`Erreur HTTP: ${response.status}`);
                 }
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                showToast('Erreur', 'Échec de l\'envoi vers Discord', 'error');
+                showToast('Erreur', 'Échec de l\'envoi', 'error');
             });
         }
         
-        // Fonction toast
         function showToast(title, message, type = 'success') {
             const toast = document.getElementById('toast');
             const toastTitle = document.getElementById('toast-title');
@@ -1139,10 +1188,7 @@
             toastMessage.textContent = message;
             
             toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
+            setTimeout(() => toast.classList.remove('show'), 4000);
         }
     </script>
 </body>
